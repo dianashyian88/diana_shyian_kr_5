@@ -1,21 +1,19 @@
-import os
-
-from utils import get_youtube_data, create_database, save_data_to_database
+from utils import create_database, save_employer_data_to_database, save_vacancy_data_to_database, \
+    save_currency_data_to_database
 from config import config
+from HeadHunterAPI import HeadHunterAPI
 
 
 def main():
-    api_key = os.getenv('YT_API_KEY')
-    channel_ids = [
-        'UC-OVMPlMA3-YCIeg4z5z23A',  # moscowpython
-        'UCwHL6WHUarjGfUM_586me8w',  # highload
-
-    ]
+    hh_api = HeadHunterAPI('банк')
+    employer_data = hh_api.get_formatted_employers()
+    vacancy_data = hh_api.get_formatted_vacancies()
+    currency_data = HeadHunterAPI.get_currency_rate()
     params = config()
-
-    data = get_youtube_data(api_key, channel_ids)
-    create_database('youtube', params)
-    save_data_to_database(data, 'youtube', params)
+    create_database('hh_vacancies', params)
+    save_employer_data_to_database(employer_data, 'hh_vacancies', params)
+    save_vacancy_data_to_database(vacancy_data, 'hh_vacancies', params)
+    save_currency_data_to_database(currency_data, 'hh_vacancies', params)
 
 
 if __name__ == '__main__':

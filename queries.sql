@@ -1,8 +1,8 @@
---создание БД
-CREATE DATABASE database_name
-
 --удаление БД
-DROP DATABASE database_name
+DROP DATABASE hh_vacancies
+
+--создание БД
+CREATE DATABASE hh_vacancies
 
 --создание таблицы employers
 CREATE TABLE employers (
@@ -77,4 +77,4 @@ WHERE salary_from IS NOT NULL);
 
 --получает список всех вакансий, в названии которых содержатся переданные в метод слова, например “python”
 SELECT * FROM vacancies
-WHERE vacancy_name LIKE key_word;
+WHERE vacancy_name LIKE '%разработчик%';

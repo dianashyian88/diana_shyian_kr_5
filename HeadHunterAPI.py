@@ -121,13 +121,3 @@ class HeadHunterAPI:
         response = requests.get(url).json()
         currency_rate = response['rub']
         return currency_rate
-
-
-# hh_api = HeadHunterAPI('банк')
-# print(hh_api.get_employers())
-# print(hh_api.get_formatted_employers())
-# print(hh_api.get_employers_id())
-# print(hh_api.get_vacancies())
-# print(hh_api.get_formatted_vacancies())
-# print(len(hh_api.get_formatted_vacancies()))
-# print(HeadHunterAPI.get_currency_rate())
